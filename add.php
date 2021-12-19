@@ -1,19 +1,31 @@
 <?php
+
+  $erros = array('email'=>'', 'title'=>'', 'ingredientes'=>'');
+
   if(isset($_POST['submit'])) {
     if(empty($_POST['email'])){
       echo 'Ah email is required <br />';
     } else {
-      echo htmlspecialchars($_POST['email']);
+      $email = $_POST['email'];
+      if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $erros['email'] = 'Email must be a valid email address';
+      }
     }
     if(empty($_POST['email'])){
       echo 'A title is required <br />';
     } else {
-      echo htmlspecialchars($_POST['title']);
+      $title = $_POST['title'];
+      if(!preg_match('/^[a-zA-Z\s]+$/', $title)) {
+        $erros['title'] = 'Title must be letters and spaces only';
+      }
     }
-    if(empty($_POST['email'])){
+    if(empty($_POST['ingredientes'])){
       echo 'At least one ingredient is required <br />';
     } else {
-      echo htmlspecialchars($_POST['ingredientes']);
+      $ingredientes = $_POST['ingredientes'];
+      if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/', $ingredientes)) {
+        $erros['ingredientes'] = 'Ingredients separed';
+      }
     }
   }
 ?>
@@ -23,9 +35,10 @@
 <?php include('templates/header.php');  ?>
   <section class="container grey-text">
     <h4 class="center">Add a Pizza</h4>
-    <form class="white" action="add.php" method="GET">
+    <form class="white" action="add.php" method="POST">
       <label>Your Email:</label>
       <input type="text" name="email">
+      <div class="red-text"><?php echo $erros['email']; ?></div>
       <label>Pizza Title:</label>
       <input type="text" name="title">
       <label>Ingredients (comma separated):</label>
