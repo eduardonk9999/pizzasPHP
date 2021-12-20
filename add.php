@@ -27,6 +27,13 @@
         $erros['ingredientes'] = 'Ingredients separed';
       }
     }
+    if(array_filter($erros)){
+
+    } else {
+      header('Location: index.php');
+    }
+
+
   }
 ?>
 

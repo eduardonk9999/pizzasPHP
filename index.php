@@ -1,4 +1,6 @@
 <?php
+  // connect to database
+  $conn = mysqli_connect('localhost', 'edu', 'pizza1234', 'pizzas'); 
 
 ?>
 <!DOCTYPE html>
