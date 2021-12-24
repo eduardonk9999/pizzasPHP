@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  php:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    volumes:  
+      - ./src:/var/www/html/
+  db:
+    image: mysql:latest
+    volumes: 
+      - dbdata_pizzas:/var/lib/mysql
+    ports:
+    - 3306:3306
+    environment:
+      - "MYSQL_ROOT_PASSWORD=rootsistema"
+      - "MYSQL_DATABASE=pizzas"
+      - "MYSQL_USER=userpizzas"
+      - "MYSQL_PASSWORD=pizzas"
+
+volumes:
+  dbdata_pizzas:
+    driver: local
