@@ -1,4 +1,6 @@
 <?php
+  include('config/db_conect.php');
+
   $title = $email= $ingredientes = '';
   $erros = array('email'=>'', 'title'=>'', 'ingredientes'=>'');
 
@@ -30,6 +32,10 @@
     if(array_filter($erros)){
 
     } else {
+      $email = mysqli_real_escape_string($conn, $_POST['email']);
+      $ingredientes = mysqli_real_escape_string($conn, $_POST['ingredientes']);
+      $title = mysqli_real_escape_string($conn, $_POST['title']);
+
       header('Location: index.php');
     }
 
