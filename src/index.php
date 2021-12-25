@@ -2,7 +2,7 @@
   include('config/db_conect.php');
 
   // escreve na tabela
-  $sql = 'SELECT title, ingredients, id FROM pizzas ORDER BY created_at';
+  $sql = 'SELECT title, ingredientes, id FROM pizzas ORDER BY created_at';
 
   //faça consulta e pegue o resultado
   $result = mysqli_query($conn, $sql);
