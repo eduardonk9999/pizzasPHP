@@ -1,13 +1,15 @@
 <?php
   // connect to database
-  $conn = mysqli_connect('localhost', 'edu', 'pizza1234', 'pizzas'); 
+
+
+  $conn = mysqli_connect('172.19.0.1', 'userpizzas', 'pizzas', 'pizzas'); 
 
   if(!$conn) {
     echo 'Connection error: ' . mysqli_connect_error();
   }
 
   // escreve na tabela
-  $sql = 'SELECT title, ingredients, id FROM pizzas ORDER BY created_at';
+  $sql = 'SELECT title, ingredientes, id FROM pizzas ORDER BY created_at';
 
   //faça consulta e pegue o resultado
   $result = mysqli_query($conn, $sql);
